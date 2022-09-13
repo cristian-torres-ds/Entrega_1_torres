@@ -4,9 +4,12 @@
 
 {% block primero %}
 
+{% if lista_empleados %}
+
 <h2><b>Estos son todos los empleados:</b></h2>
     
     {% for empleado in lista_empleados %}
+
     <p>
         <br>Nombre: <b>{{empleado.nombre}}</b>
         <br>Apellido: <b>{{empleado.apellido}}</b>
@@ -14,7 +17,20 @@
         <br>E-mail: <b>{{empleado.email}}</b>
         <br>Nacimiento: <b>{{empleado.nacimiento}}</b>
         <br>Documento: <b>{{empleado.documento}}</b>
+        <br><a class="btn btn-danger btn-sm" href="{% url 'eliminar_empleado' empleado.id %}">ELIMINAR</a>
+        <a class="btn btn-dark btn-sm" href="{% url 'editar_empleado' empleado.id %}">EDITAR</a>
     </p>
+
     {% endfor %}
+
+{% else %}
+
+<h2><b>No se encontraron empleados.</b></h2>
+
+{% endif %}
+
+<p>
+    <a class="btn btn-success btn-lg" href="{% url 'add_empleado' %}">Añadir otro</a>
+</p>
 
 {% endblock %}

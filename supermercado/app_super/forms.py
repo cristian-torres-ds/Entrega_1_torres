@@ -1,12 +1,12 @@
 from django import forms
 
-class Proveedor_form(forms.Form):
+class ProveedorForm(forms.Form):
     nombre = forms.CharField(max_length=50)
     telefono = forms.IntegerField()
     email = forms.EmailField()
 
 
-class Empleado_form(forms.Form):
+class EmpleadoForm(forms.Form):
     nombre = forms.CharField(max_length=50)
     apellido = forms.CharField(max_length=50)
     telefono = forms.IntegerField()
@@ -15,8 +15,14 @@ class Empleado_form(forms.Form):
     documento = forms.IntegerField()
 
 
-class Cliente_form(forms.Form):
+class ClienteForm(forms.Form):
     nombre = forms.CharField(max_length=50)
     apellido = forms.CharField(max_length=50)
     telefono = forms.IntegerField()
     email = forms.EmailField()
+
+
+class ProductoForm(forms.Form):
+    nombre = forms.CharField(max_length=50)
+    marca = forms.CharField(max_length=50)
+    cantidad = forms.IntegerField()

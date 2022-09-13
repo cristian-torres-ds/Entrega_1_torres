@@ -1,0 +1,17 @@
+{% extends "app_super/padre.html" %}
+
+{% load static %}
+
+{% block primero %}
+
+<h2><b>Estos son todos los Productos:</b></h2>
+    
+    {% for producto in object_list %}
+
+    <li>
+        <b>{{producto.nombre}}</b>
+    </li>
+
+    {% endfor %}
+
+{% endblock %}

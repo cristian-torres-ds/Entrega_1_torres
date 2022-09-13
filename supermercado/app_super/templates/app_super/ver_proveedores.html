@@ -4,16 +4,30 @@
 
 {% block primero %}
 
+{% if lista_proveedores %}
+
 <h2><b>Estos son todos los proveedores:</b></h2>
     
     {% for proveedor in lista_proveedores %}
+
     <p>
         <br>Nombre: <b>{{proveedor.nombre}}</b>
         <br>Teléfono: <b>{{proveedor.telefono}}</b>
         <br>E-mail: <b>{{proveedor.email}}</b>
+        <br><a class="btn btn-danger btn-sm" href="{% url 'eliminar_proveedor' proveedor.id %}">ELIMINAR</a>
+        <a class="btn btn-dark btn-sm" href="{% url 'editar_proveedor' proveedor.id %}">EDITAR</a>
     </p>
+
     {% endfor %}
 
+{% else %}
+
+<h2><b>No se encontraron proveedores.</b></h2>
+
+{% endif %}
+
+<p>
+    <a class="btn btn-success btn-lg" href="{% url 'add_proveedor' %}">Añadir otro</a>
+</p>
+
 {% endblock %}
-
-

@@ -4,15 +4,31 @@
 
 {% block primero %}
 
+{% if lista_clientes %}
+
 <h2><b>Estos son todos los clientes:</b></h2>
     
     {% for cliente in lista_clientes %}
+
     <p>
         <br>Nombre: <b>{{cliente.nombre}}</b>
         <br>Apellido: <b>{{cliente.apellido}}</b>
         <br>Teléfono: <b>{{cliente.telefono}}</b>
         <br>E-mail: <b>{{cliente.email}}</b>
+        <br><a class="btn btn-danger btn-sm" href="{% url 'eliminar_cliente' cliente.id %}">ELIMINAR</a>
+        <a class="btn btn-dark btn-sm" href="{% url 'editar_cliente' cliente.id %}">EDITAR</a>
     </p>
+
     {% endfor %}
+
+{% else %}
+
+<h2><b>No se encontraron clientes.</b></h2>
+
+{% endif %}
+
+<p>
+    <a class="btn btn-success btn-lg" href="{% url 'add_cliente' %}">Añadir otro</a>
+</p>
 
 {% endblock %}
