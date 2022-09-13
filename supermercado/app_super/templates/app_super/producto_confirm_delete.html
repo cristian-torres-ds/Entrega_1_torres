@@ -2,9 +2,15 @@
 
 {% load static %}
 
+{% block titulo %}
+
+Eliminar producto
+
+{% endblock %}
+
 {% block primero %}
 
-<h2><b>Borrar Producto</b></h2>
+<h2><b>Eliminar Producto</b></h2>
 
 <form method="POST">{% csrf_token %}
 
