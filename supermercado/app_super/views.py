@@ -13,7 +13,7 @@ from django.contrib.auth.decorators import login_required
 
 def inicio(request):
 
-    return render(request, "app_super/inicio.html")
+    return render(request, "app_super/inicio.html", {'avatar':obtener_avatar(request)})
 
 
 #-------------PREVEEDORES-----------------------------------------------------------------------------------------
@@ -30,16 +30,16 @@ def proveedor_form(request):
                                   telefono = informacion['telefono'],
                                   email = informacion['email'])
             proveedor.save()
-            return render(request, "app_super/inicio.html", {"mensaje":"Proveedor creado exitosamente."})
+            return render(request, "app_super/inicio.html", {"mensaje":"Proveedor creado exitosamente.", 'avatar':obtener_avatar(request)})
     else:
         mi_formulario = ProveedorForm()
-    return render(request, "app_super/add_proveedor.html", {"mi_formulario":mi_formulario})
+    return render(request, "app_super/add_proveedor.html", {"mi_formulario":mi_formulario, 'avatar':obtener_avatar(request)})
 
 
 @login_required
 def busqueda_proveedor(request):
 
-    return render(request, "app_super/busqueda_proveedor.html")
+    return render(request, "app_super/busqueda_proveedor.html", {'avatar':obtener_avatar(request)})
 
 
 @login_required
@@ -47,16 +47,16 @@ def buscar_proveedor(request):
     if request.GET["nombre"]:
         nombre = request.GET["nombre"]
         nombres = Proveedor.objects.filter(nombre__icontains=nombre) # nombre=nombre
-        return render(request, "app_super/buscar_proveedor.html", {"nombres":nombres})
+        return render(request, "app_super/buscar_proveedor.html", {"nombres":nombres, 'avatar':obtener_avatar(request)})
     else:
-        return render(request, "app_super/busqueda_proveedor.html", {"mensaje":"Ingrese un nombre."})
+        return render(request, "app_super/busqueda_proveedor.html", {"mensaje":"Ingrese un nombre.", 'avatar':obtener_avatar(request)})
 
 
 @login_required
 def ver_proveedores(request):
     lista_proveedores = Proveedor.objects.all()
 
-    return render(request, "app_super/ver_proveedores.html", {"lista_proveedores" : lista_proveedores})
+    return render(request, "app_super/ver_proveedores.html", {"lista_proveedores" : lista_proveedores, 'avatar':obtener_avatar(request)})
 
 
 @login_required
@@ -89,7 +89,7 @@ def editar_proveedor(request, id):
                                                 'telefono':proveedor.telefono,
                                                 'email':proveedor.email})
     
-    return render(request, "app_super/editar_proveedor.html", {'mi_formulario':mi_formulario, 'proveedor':proveedor})
+    return render(request, "app_super/editar_proveedor.html", {'mi_formulario':mi_formulario, 'proveedor':proveedor, 'avatar':obtener_avatar(request)})
 
 
 #-------------EMPLEADOS-----------------------------------------------------------------------------------------
@@ -108,16 +108,16 @@ def empleado_form(request):
                                 nacimiento = informacion['nacimiento'],
                                 documento = informacion['documento'])
             empleado.save()
-            return render(request, "app_super/inicio.html", {"mensaje":"Empleado creado exitosamente."})
+            return render(request, "app_super/inicio.html", {"mensaje":"Empleado creado exitosamente.", 'avatar':obtener_avatar(request)})
     else:
         mi_formulario = EmpleadoForm()
-    return render(request, "app_super/add_empleado.html", {"mi_formulario":mi_formulario})
+    return render(request, "app_super/add_empleado.html", {"mi_formulario":mi_formulario, 'avatar':obtener_avatar(request)})
 
 
 @login_required
 def busqueda_empleado(request):
 
-    return render(request, "app_super/busqueda_empleado.html")
+    return render(request, "app_super/busqueda_empleado.html", {'avatar':obtener_avatar(request)})
 
 
 @login_required
@@ -125,16 +125,16 @@ def buscar_empleado(request):
     if request.GET["nombre"]:
         nombre = request.GET["nombre"]
         nombres = Empleado.objects.filter(nombre__icontains=nombre)
-        return render(request, "app_super/buscar_empleado.html", {"nombres":nombres})
+        return render(request, "app_super/buscar_empleado.html", {"nombres":nombres, 'avatar':obtener_avatar(request)})
     else:
-        return render(request, "app_super/busqueda_empleado.html", {"mensaje":"Ingrese un nombre."})
+        return render(request, "app_super/busqueda_empleado.html", {"mensaje":"Ingrese un nombre.", 'avatar':obtener_avatar(request)})
 
 
 @login_required
 def ver_empleados(request):
     lista_empleados = Empleado.objects.all()
 
-    return render(request, "app_super/ver_empleados.html", {"lista_empleados" : lista_empleados})
+    return render(request, "app_super/ver_empleados.html", {"lista_empleados" : lista_empleados, 'avatar':obtener_avatar(request)})
 
 
 @login_required
@@ -174,7 +174,7 @@ def editar_empleado(request, id):
                                                'nacimiento':empleado.nacimiento,
                                                'documento':empleado.documento,})
     
-    return render(request, "app_super/editar_empleado.html", {'mi_formulario':mi_formulario, 'empleado':empleado})
+    return render(request, "app_super/editar_empleado.html", {'mi_formulario':mi_formulario, 'empleado':empleado, 'avatar':obtener_avatar(request)})
 
 
 #---------------CLIENTES--------------------------------------------------------------------------------
@@ -191,16 +191,16 @@ def cliente_form(request):
                               telefono = informacion['telefono'],
                               email = informacion['email'])
             cliente.save()
-            return render(request, "app_super/inicio.html", {"mensaje":"Cliente creado exitosamente."})
+            return render(request, "app_super/inicio.html", {"mensaje":"Cliente creado exitosamente.", 'avatar':obtener_avatar(request)})
     else:
         mi_formulario = ClienteForm()
-    return render(request, "app_super/add_cliente.html", {"mi_formulario":mi_formulario})
+    return render(request, "app_super/add_cliente.html", {"mi_formulario":mi_formulario, 'avatar':obtener_avatar(request)})
 
 
 @login_required
 def busqueda_cliente(request):
 
-    return render(request, "app_super/busqueda_cliente.html")
+    return render(request, "app_super/busqueda_cliente.html", {'avatar':obtener_avatar(request)})
 
 
 @login_required
@@ -208,16 +208,16 @@ def buscar_cliente(request):
     if request.GET["nombre"]:
         nombre = request.GET["nombre"]
         nombres = Cliente.objects.filter(nombre__icontains=nombre)
-        return render(request, "app_super/buscar_cliente.html", {"nombres":nombres})
+        return render(request, "app_super/buscar_cliente.html", {"nombres":nombres, 'avatar':obtener_avatar(request)})
     else:
-        return render(request, "app_super/busqueda_cliente.html", {"mensaje":"Ingrese un nombre."})
+        return render(request, "app_super/busqueda_cliente.html", {"mensaje":"Ingrese un nombre.", 'avatar':obtener_avatar(request)})
 
 
 @login_required
 def ver_clientes(request):
     lista_clientes = Cliente.objects.all()
 
-    return render(request, "app_super/ver_clientes.html", {"lista_clientes" : lista_clientes})
+    return render(request, "app_super/ver_clientes.html", {"lista_clientes" : lista_clientes, 'avatar':obtener_avatar(request)})
 
 
 @login_required
@@ -252,7 +252,7 @@ def editar_cliente(request, id):
                                               'telefono':cliente.telefono,
                                               'email':cliente.email})
     
-    return render(request, "app_super/editar_cliente.html", {'mi_formulario':mi_formulario, 'cliente':cliente})
+    return render(request, "app_super/editar_cliente.html", {'mi_formulario':mi_formulario, 'cliente':cliente, 'avatar':obtener_avatar(request)})
 
 
 #---------------PRODUCTOS--------------------------------------------------------------------------------
@@ -296,15 +296,15 @@ def login_request(request):
 
             if user is not None:
                 login(request, user)
-                return render(request, "app_super/inicio.html", {'mensaje':f"Bienbenido {usuario}"})
+                return render(request, "app_super/inicio.html", {'mensaje':f"Bienbenido {usuario}", 'avatar':obtener_avatar(request)})
             else:
-                return render(request, "AppCoder/login.html", {"formulario":form, "mensaje":"Usuario o contraseña incorrectos"})
+                return render(request, "AppCoder/login.html", {"formulario":form, "mensaje":"Usuario o contraseña incorrectos", 'avatar':obtener_avatar(request)})
         else:
-            return render(request, "app_super/login.html", {"formulario":form, "mensaje":"Usuario o contraseña incorrectos"})
+            return render(request, "app_super/login.html", {"formulario":form, "mensaje":"Usuario o contraseña incorrectos", 'avatar':obtener_avatar(request)})
 
     else:
         form=AuthenticationForm()
-        return render(request, "app_super/login.html", {'formulario':form})
+        return render(request, "app_super/login.html", {'formulario':form, 'avatar':obtener_avatar(request)})
 
 
 def register(request):
@@ -314,9 +314,63 @@ def register(request):
         if form.is_valid():
             username = form.cleaned_data['username']
             form.save()
-            return render(request, "app_super/inicio.html", {'mensaje':f"Usuario {username} creado correctamente."})
+            return render(request, "app_super/inicio.html", {'mensaje':f"Usuario {username} creado correctamente.", 'avatar':obtener_avatar(request)})
     else:
         #form = UserCreationForm()
         form = UserRegisterForm()
     
-    return render(request, "app_super/register.html", {'formulario':form})
+    return render(request, "app_super/register.html", {'formulario':form, 'avatar':obtener_avatar(request)})
+
+
+@login_required
+def editar_perfil(request):
+    usuario = request.user
+    if request.method == 'POST':
+        form = UserEditForm(request.POST)
+        if form.is_valid():
+            informacion = form.cleaned_data
+
+            usuario.email = informacion['email']
+            usuario.password1 = informacion['password1']
+            usuario.password2 = informacion['password2']
+            usuario.save()
+
+            return render(request, "app_super/inicio.html", {'avatar':obtener_avatar(request)})
+    
+    else:
+        form = UserEditForm(initial={'email':usuario.email})
+
+    return render(request, "app_super/editar_perfil.html", {'mi_formulario':form, 'usuario':usuario, 'avatar':obtener_avatar(request)})
+
+
+@login_required
+def add_avatar(request):
+    if request.method == 'POST':
+        formulario = AvatarForm(request.POST, request.FILES)
+        if formulario.is_valid():
+            # Para eliminar avatar antiguo
+            avatar_viejo = Avatar.objects.filter(user=request.user)
+            if(len(avatar_viejo)>0):
+                avatar_viejo[0].delete()
+            # Añadir avatar nuevo
+            avatar = Avatar(user=request.user, imagen=formulario.cleaned_data['imagen'])
+            avatar.save()
+            return render(request, 'app_super/inicio.html', {'usuario':request.user, 'mensaje':'Avatar guardado', 'imagen':avatar.imagen.url, 'avatar':obtener_avatar(request)})
+        else:
+            return render(request, 'app_super/add_avatar.html', {'usuario':request.user, 'mensaje':'Formulario inválido', 'avatar':obtener_avatar(request)})
+    else:
+        formulario = AvatarForm()
+        return render(request, "app_super/add_avatar.html", {'mi_formulario':formulario, 'usuario':request.user, 'avatar':obtener_avatar(request)})
+
+
+def obtener_avatar(request):
+    try:
+        lista = Avatar.objects.filter(user=request.user)
+    except TypeError:
+        imagen = "/media/avatares/default.png"
+    else:
+        if len(lista)!=0:
+            imagen = lista[0].imagen.url
+        else:
+            imagen = "/media/avatares/default.png"
+    return imagen

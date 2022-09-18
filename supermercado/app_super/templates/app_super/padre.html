@@ -42,11 +42,14 @@
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
                     <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
                         {% if user.is_authenticated %}
+                        <li class="nav-item"><a class="nav-link" href="{% url 'editar_perfil' %}">{{user.username}}</a></li>
                         <li class="nav-item"><a class="nav-link" href="{% url 'logout' %}">LOGOUT</a></li>
+                        <li class="nav-item"><a class="nav-link" href="{% url 'add_avatar' %}">AVATAR</a></li>
                         {% else %}
                         <li class="nav-item"><a class="nav-link" href="{% url 'login' %}">LOGIN</a></li>
                         <li class="nav-item"><a class="nav-link" href="{% url 'register' %}">REGISTER</a></li>
                         {% endif %}
+                        <img height="40px" src="{{ avatar }}" alt="">
                     </ul>
                 </div>
             </div>

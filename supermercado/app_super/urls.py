@@ -2,6 +2,8 @@ from django.urls import path
 from app_super.views import *
 from app_super.views import ProductoList, ProductoDetalle, ProductoCreacion, ProductoUpdate, ProductoDelete
 from django.contrib.auth.views import LogoutView
+from django.conf import settings
+from django.conf.urls.static import static
 
 
 urlpatterns = [
@@ -37,4 +39,6 @@ urlpatterns = [
     path('login/', login_request, name='login'),
     path('register/', register, name='register'),
     path('logout/', LogoutView.as_view(template_name='app_super/logout.html'), name='logout'),
+    path('editar_perfil', editar_perfil, name='editar_perfil'),
+    path('add_avatar/', add_avatar, name='add_avatar'),
 ]

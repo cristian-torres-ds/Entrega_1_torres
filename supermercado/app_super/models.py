@@ -1,5 +1,6 @@
 from mailbox import NoSuchMailboxError
 from django.db import models
+from django.contrib.auth.models import User
 
 class Proveedor(models.Model):
     nombre = models.CharField(max_length=50)
@@ -39,3 +40,10 @@ class Producto(models.Model):
 
     def __str__(self):
         return f"Nombre: {self.nombre}"
+
+
+class Avatar(models.Model):
+    # Vínculo con el usuario
+    user = models.ForeignKey(User, on_delete=models.CASCADE)
+    # Subcarpeta avatares de media
+    imagen = models.ImageField(upload_to='avatares')
